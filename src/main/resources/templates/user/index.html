@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<section class="">
+		<div class="card text-center mx-3">
+		<div class="card-header font-weight-bold bg-secondary text-white">
+		<h3>Dashboard</h3>
+		</div>
+		
+		<div class="card-body">
+		<div class="container text-center">
+		<span class="display-3 text-center font-weight-bold" >Welcome </span>
+		<br />
+		<span style="font-size:30px; color: maroon; " class="display-5 font-weight-bold" th:text="${user.name}"></span>
+		</div>
+		<div class="row ml-3 p-3 ">
+		
+		<div class="container text-center">
+		<div class="card m-2 bg-secondary text-white ">
+		
+		<div class="card-body font-weihgt-bold text-center">
+		<h2>Start adding your contacts.</h2>
+		<a href="/user/add-contact" class="btn btn-block bg-primary text-white">Add New Contact</a>
+		<h5 style="color:yellow; font-weight:bold; margin-top:3px;">No of Contacts</h5>
+		
+		
+		<span style="color:yellow; font-weight:bold;" class="display-1" th:text="${user.getContacts.size}"></span>
+		
+		</div>
+		
+		</div>
+		
+		</div>
+		
+		</div>
+		</div>
+		</div>
+		<script>
+		
+		$(document).ready(()=>{
+			$(".item").removeClass("active");
+			$("#home").addClass("active");
+		});
+		</script>
+	</section>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<section class="">
+
+		<div class="card mr-3 ml-3">
+			<h3 class="font-weight-bold text-center bg-secondary text-white">Contacts List</h3>
+			<div class="card-body">
+			<div class="search-container m-2">
+			
+			<input onKeyUp="search()" class="form-control" type="text" id="search" placeholder="Search your contact"/>
+			<div class="search-result">
+			
+			<p>Result...</p>
+			
+			</div>
+			
+			</div>
+			<div class="table-responsive">
+				<table class="table table-hover table-sm ">
+					<thead class="bg-primary text-white">
+						<tr class="text-center">
+							<th scope="col">#Id.</th>
+							<th class="text-justify" scope="col">Name</th>
+							<th class="text-justify" scope="col">Email</th>
+							
+							<th class="text-justify" scope="col">Mobile</th>
+							<th class="text-justify" scope="col">Profs.</th>
+							<th scope="col">Action</th>
+
+						</tr>
+					</thead>
+
+					<tbody th:each="c : ${contacts}">
+						<tr>
+							<th class="text-center" th:text="${'SCM2223'+c.cId}">1</th>
+							<td class="text-justify" th:text="${c.name}">Mark</td>
+							<td class="text-justify" >
+							<img class="profile_photo mr-1" th:src="@{'/contact_images/'+${c.imageFile}}" alt="profile-photo" />
+							<a th:href="@{'/user/contact-details/'+${c.cId}}">
+							<span th:text="${c.email}">
+							
+							</span>
+							
+							</a>
+							</td>
+							
+							<td class="text-justify" th:text="${c.mob}">Mark</td>
+							<td class="text-justify" th:text="${c.work}">Otto</td>
+							<td class="text-center">
+							<a href="#" th:href="@{'/user/update-contact/'+${c.cId}}" class="btn btn-primary btn-sm m-2">Update</a>
+
+								<a href="#" th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger btn-sm">Delete</a>
+						</tr>
+
+					</tbody>
+				</table>
+				</div>
+				<nav aria-label="...">
+				<p th:if="${totalPage==0}">No Contacts Available</p>
+					<ul th:if="${totalPage !=0}"  class="pagination">
+						<li th:if="${currentPage != 0}" class="page-item"><a
+							class="page-link"
+							th:href="@{'/user/view-contact/'+${currentPage-1}}" tabindex="-1">Previous</a></li>
+						<li th:if="${totalPage != 0}" th:classappend="${currentPage==i-1?'active':''}"
+							th:each="i:${#numbers.sequence(1,totalPage)}" class="page-item"><a
+							th:href="@{'/user/view-contact/'+${i-1}}" class="page-link"><span
+								th:text="${i}"></span></a></li>
+
+						<li th:if="${currentPage != totalPage-1  }" class="page-item"><a
+							class="page-link"
+							th:href="@{'/user/view-contact/'+${currentPage+1}}">Next</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<script>
+		$(document).ready(()=>{
+			$(".item").removeClass("active");
+			$("#view-contacts").addClass("active");
+		});
+		</script>
+
+	</section>
+</body>
+</html>

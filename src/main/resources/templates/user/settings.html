@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+
+th:replace="user/base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<section class="">
+		<div class="container-fluid">
+			<div class="card">
+				<div class="card-header bg-secondary text-white">
+					<h3>Settings</h3>
+				</div>
+				<div class="card-body">
+					
+							<div class="settings-pannel">
+								<a href="/user/change-password" class="item">Change Password</a>
+								 <a href="" class="item">Total Number of contacts: <span
+									th:text="${user.getContacts.size}"></span></a> 
+									 <a href="/user/import" class="item">Import Contacts to Excel</a>
+									<a href="" class="item">Export Contacts to Excel</a>
+
+							</div>
+
+						</div>
+					</div>
+					
+
+				</div>
+
+
+			
+
+		<script>
+		$(document).ready(()=>{
+			$(".item").removeClass("active");
+			$("#settings").addClass("active");
+		});
+		</script>
+	</section>
+	
+</body>
+</html>

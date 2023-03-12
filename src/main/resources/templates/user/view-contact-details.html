@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/base::Layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<section class="">
+
+		<div class="card mx-3 text-center">
+		<div class="card-header font-weight-bold bg-secondary text-white ">
+		<h2 class="font-weight-bold mt-3">Contact Details</h2>
+		</div>
+		<div  class="card-body">
+		<div class="text-center">
+		<img style="width:150px; height:150px; border-radius:50%; object-fit:cover;" th:src="@{'/contact_images/'+${contact.imageFile}}" alt="" />
+		<h3 class="mt-3" ><span th:text="${contact.name}"></span> ( <span th:text="${contact.nickName}"></span> )</h3>
+		<div class="container text-center">
+		<table  class="table table-hover text-center">
+  <tbody th:each="c:${contact}">
+    <tr>
+      <th scope="col">#Id</th>
+      <th scope="row" th:text="${c.cId}" >1</th>
+    </tr>
+    <tr>
+    <th scope="row">Email</th>
+    <td th:text="${c.email}">Mark</td>
+    </tr>
+    <tr>
+    <th scope="row">Work</th>
+    <td th:text="${c.work}">Otto</td>
+    </tr>
+    <tr>
+    <th scope="row">Description</th>
+     <td th:text="${c.description}">@mdo</td>
+    </tr>
+  </tbody>
+</table>
+<a href="" th:href="@{'/user/update-contact/'+${contact.cId}}" class="btn bg-primary text-white mt-3">Update Details</a>
+		
+		</div>
+		</div>
+		</div>
+		
+		</div>
+	</section>
+</body>
+</html>
